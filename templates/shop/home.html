@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home page</title>
-</head>
-<body>
-<h1> Home Page </h1>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Home Page
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <img src="{% static '1048684.jpg' %}">
+    </div>
+</div>
+{% endblock %}
