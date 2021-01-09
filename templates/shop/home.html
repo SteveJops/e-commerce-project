@@ -8,7 +8,36 @@ Home Page
 {% block content %}
 <div class="container-fluid">
     <div class="row">
-        <img src="{% static '1048684.jpg' %}">
+        <img class="img-fluid" src="{% static 'images/1110799.jpg' %}"
+             alt="background image which imagine itself in view with some goods, cell phone and man with woman ">
+    </div>
+</div>
+<div class="py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-10 mx-auto my-2 text-center">
+                <h1 class="text-capitalize font-weight-bold">
+                    Our products
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        {% for i in 'aaaaaaaa' %}
+        <div class="col-9 mx-auto col-md-6 col-lg-3">
+            <div class="card mb-4">
+                <div class="p-4"><img class="card-img-top" src="{% static 'images/413269.png' %}"
+                                      alt="So many different goods"></div>
+                <div class="card-footer d-flex justify-content-between"
+                     style="background: transparent; border-color: transparent;">
+                    <p class="font-weight-bold mb-0"> Awesome goods </p>
+                    <h5 class="text-info font-italic mb-0">$ 9.99</h5>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

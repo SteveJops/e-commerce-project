@@ -7,6 +7,6 @@ class HomeView(View):
         return render(request, 'shop/home.html')
 
 
-class AboutView(View):
+class ProductView(View):
     def get(self, request):
-        return render(request, 'shop/about.html')
+        return render(request, 'shop/product.html')
