@@ -1,10 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block title %}
+Your Cart
+{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <br>
+    <div class="text-center product_title">
+        Shopping cart
+    </div>
+</div>
+<div class="row mx-auto">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+        <table class="table cart-table">
+            <thead class="cart-thead">
+            <tr><th colspan="4"> Your Items </th></tr>
+            </thead>
+             {% for i in "123" %}
+            <tr>
+                <td><a href=""> <img src="{% static 'images/download11.jpg' %}" width="100" height="100"></a></td>
+                <td class="text-left">
+                    Fruits
+                    <br>
+                    SKU:7
+                    <br>
+                    Unit Price: $00
+                    <br>
+                    Quantity: 5 x $00
+                </td>
+                <td> $00 </td>
+                <td> <a href="" style="text-decoration:none;"> <i class="material-icons">add_shopping_cart</i> </a>
+                    <a href="" style="text-decoration:none;"> <i class="material-icons">remove_circle_outline</i> </a>
+                    <a href="" style="text-decoration:none;"> <i class="material-icons">delete_outline</i> </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+        <table class="table cart-table">
+            <thead class="cart-thead">
+            <tr><th colspan="4"> Check Out </th></tr>
+            </thead>
+            <tbody>
+            <tr style="font-size:24px; font-style:bold;"><td>Please check your cart before you pay</td></tr>
+            <tr class="text-left"><td>Your total bill is: <br>
+                <div class="text-center"><strong style="font-size:48px;">$00 </strong></div></td></tr>
+            </tbody>
+        </table>
+        <div class="mx-auto">
+            <a href="" style="text-decoration:none;">
+                <button type="button" class="btn btn-lg btn-block bg-dark text-white ">Back to the Shopping</button>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

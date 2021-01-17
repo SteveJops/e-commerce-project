@@ -25,4 +25,4 @@ class ProductView(View):
 
 class CartView(View):
     def get(self, request):
-        return render(request, 'cart.html')
+        return render(request, 'shop/cart.html')
