@@ -6,6 +6,17 @@ Your Cart
 {% endblock %}
 
 {% block content %}
+
+    {% if not cart_items %}
+<div class="text-center">
+    <br>
+    <h1 class="text-center product_title"> Your cart is empty </h1>
+    <br>
+    <p class="text-center">
+        Click <a href="{% url 'home' %}">here</a> to go back to home page
+    </p>
+    </div>
+{% else %}
 <div class="text-center">
     <br>
     <div class="text-center product_title">
@@ -18,23 +29,33 @@ Your Cart
             <thead class="cart-thead">
             <tr><th colspan="4"> Your Items </th></tr>
             </thead>
-             {% for i in "123" %}
+             {% for cart_item in cart_items %}
             <tr>
-                <td><a href=""> <img src="{% static 'images/download11.jpg' %}" width="100" height="100"></a></td>
+                <td><a href="cart_item.product.get_url"> <img src="{{cart_item.product.image.url}}" width="100" height="100"></a></td>
                 <td class="text-left">
-                    Fruits
+                    {{cart_item.product.name}}
                     <br>
-                    SKU:7
+                    SKU:{{cart_item.product.id}}
                     <br>
-                    Unit Price: $00
+                    Unit Price: $ {{cart_item.product.price}}
                     <br>
-                    Quantity: 5 x $00
+                    Quantity: {{cart_item.quantity}} * {{cart_item.product.price}}
                 </td>
-                <td> $00 </td>
-                <td> <a href="" style="text-decoration:none;"> <i class="material-icons">add_shopping_cart</i> </a>
+                <td> $ {{cart_item.sub_total}} </td>
+                {% if cart_item.quantity < cart_item.product.stock %}
+                <td>
+                    <a href="{% url 'add_cart' cart_item.product.id %}" style="text-decoration:none;">
+                        <i class="material-icons">add_shopping_cart</i> </a>
                     <a href="" style="text-decoration:none;"> <i class="material-icons">remove_circle_outline</i> </a>
                     <a href="" style="text-decoration:none;"> <i class="material-icons">delete_outline</i> </a>
                 </td>
+                {% else %}
+                 <td>
+                    <a href="" style="text-decoration:none;"> <i class="material-icons">remove_circle_outline</i> </a>
+                    <a href="" style="text-decoration:none;"> <i class="material-icons">delete_outline</i> </a>
+                </td>
+
+                {% endif %}
             </tr>
             {% endfor %}
         </table>
@@ -46,15 +67,17 @@ Your Cart
             </thead>
             <tbody>
             <tr style="font-size:24px; font-style:bold;"><td>Please check your cart before you pay</td></tr>
-            <tr class="text-left"><td>Your total bill is: <br>
-                <div class="text-center"><strong style="font-size:48px;">$00 </strong></div></td></tr>
+            <tr class="text-left"><td>Your total bill is:<br>
+                <div class="text-center"><strong style="font-size:48px;">${{ total }} </strong></div></td></tr>
             </tbody>
         </table>
         <div class="mx-auto">
-            <a href="" style="text-decoration:none;">
+            <a href="{% url 'home' %}" style="text-decoration:none;">
                 <button type="button" class="btn btn-lg btn-block bg-dark text-white ">Back to the Shopping</button>
             </a>
         </div>
     </div>
 </div>
+
+{% endif %}
 {% endblock %}
