@@ -46,13 +46,17 @@ Your Cart
                 <td>
                     <a href="{% url 'add_cart' cart_item.product.id %}" style="text-decoration:none;">
                         <i class="material-icons">add_shopping_cart</i> </a>
-                    <a href="" style="text-decoration:none;"> <i class="material-icons">remove_circle_outline</i> </a>
-                    <a href="" style="text-decoration:none;"> <i class="material-icons">delete_outline</i> </a>
+                    <a href="{% url 'cart_remove' cart_item.product.id %}" style="text-decoration:none;">
+                        <i class="material-icons">remove_circle_outline</i> </a>
+                    <a href="{% url 'cart_delete' cart_item.product.id %}" style="text-decoration:none;">
+                        <i class="material-icons">delete_outline</i> </a>
                 </td>
                 {% else %}
                  <td>
-                    <a href="" style="text-decoration:none;"> <i class="material-icons">remove_circle_outline</i> </a>
-                    <a href="" style="text-decoration:none;"> <i class="material-icons">delete_outline</i> </a>
+                    <a href="{% url 'cart_remove' cart_item.product.id %}" style="text-decoration:none;">
+                        <i class="material-icons">remove_circle_outline</i> </a>
+                    <a href="{% url 'cart_delete' cart_item.product.id %}" style="text-decoration:none;">
+                        <i class="material-icons">delete_outline</i> </a>
                 </td>
 
                 {% endif %}

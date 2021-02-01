@@ -25,6 +25,12 @@
                 <a href="#" class="nav-link text-success text-uppercase font-weight-bold px-3">Contact</a></li>
             <li class="nav-item">
                 <a href="#" class="nav-link text-success text-uppercase font-weight-bold px-3">About</a></li>
+            {% if item_count > 0 %}
+            <li class="nav-item">
+                <a href="{% url 'cart_detail' %}" class="nav-link text-success text-uppercase font-weight-bold px-3">
+                     <i class="material-icons">add_shopping_cart</i>({{item_count}})
+                    </a></li>
+            {% endif %}
         </ul>
         <form class="form-inline">
             <input type="text" placeholder="Search...">
