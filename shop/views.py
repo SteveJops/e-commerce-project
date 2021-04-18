@@ -1,6 +1,8 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.base import View
+from django.contrib.auth.models import Group, User
+from .forms import SignUpForm
 
 from .models import Category, Product, Cart, CartItem
 
@@ -83,3 +85,19 @@ def cart_delete(request, product_id):
     cart_item = CartItem.objects.get(product=product, cart=cart)
     cart_item.delete()
     return redirect('cart_detail')
+
+
+class SignUpView(View):
+
+    def post(self, request):
+        if request.method == 'POST':
+            form = SignUpForm(request.POST)
+            if form.is_valid():
+                form.save()
+                username = form.clean_data.get('username')
+                signup_user = User.objects.get(username=username)
+                user_group = Group.objects.get(name='User')
+                user_group.user_set.add(signup_user)
+        else:
+            form = SignUpForm()
+        return render(request, 'signup.html', {'form': form})
