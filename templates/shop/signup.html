@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %}
   Create an Account
@@ -11,7 +12,7 @@
       <div>
         <br>
         <h1 class="product_title text-center">
-          Create a new user`s account
+          Create a new user account
         </h1>
         <br>
         <div class="col-9 col-sm-9 col-md-6 col-lg-5 mx-auto bg-light">
@@ -21,7 +22,7 @@
           </p>
           <form action="{% url 'user_create' %}" method="post">
               {% csrf_token %}
-            <p>{{ form }}</p>
+            <p>{{ form | crispy }}</p>
             <button type="submit" name="button" class="btn btn-secondary"> Sign Up </button>
           </form>
         </div>
@@ -34,11 +35,12 @@
       </h1>
       <br>
       <div>
-        <p>
+        <p class="text-center">
           Your account has been created and ready for use!
         </p>
         <br>
-        <a href="{% url 'home.html' %}">Continue shopping</a>
+        <div class="text-center"><a href="{% url 'home' %}" >Continue shopping</a></div>
+
       </div>
     </div>
     {% endif %}

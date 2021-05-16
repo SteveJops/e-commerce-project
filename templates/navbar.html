@@ -5,6 +5,8 @@
         </span>
     </button>
     <div id="navbar" class="collapse navbar-collapse justify-content-between">
+        <div class="col-sm-9">
+            <div class="row">
         <ul class="navbar-nav ">
             <li class="nav-item dropdown">
                 <a href="#"
@@ -15,23 +17,42 @@
                     {% for category in links %}
                     <a class="dropdown-item" href="{{category.get_url}}"> {{category.name}}</a>
                     {% endfor %}
-<!--                    <a class="dropdown-item" href="">Category2</a>-->
-<!--                    <a class="dropdown-item" href="">Category3</a>-->
-<!--                    <a class="dropdown-item" href="">Category4</a>-->
-<!--                    <a class="dropdown-item" href="">Category5</a>-->
+                    <!--                    <a class="dropdown-item" href="">Category2</a>-->
+                    <!--                    <a class="dropdown-item" href="">Category3</a>-->
+                    <!--                    <a class="dropdown-item" href="">Category4</a>-->
+                    <!--                    <a class="dropdown-item" href="">Category5</a>-->
                 </div>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link text-success text-uppercase font-weight-bold px-3">Contact</a></li>
             <li class="nav-item">
                 <a href="#" class="nav-link text-success text-uppercase font-weight-bold px-3">About</a></li>
+            {% if request.user.is_authenticated and request.user.first_name %}
+            <li class="nav-item">
+                <span class="nav-link text-success text-uppercase font-weight-bold px-3">
+                    Welcome, {{request.user.first_name}}!</span><i class="material-icons">account_circle</i></li>
+            <li class="nav-item">
+                <a href="{% url 'signout' %}" class="nav-link text-success text-uppercase font-weight-bold px-3">
+                    Log Out</a><i class="material-icons">exit_to_app</i></li>
+            {% else %}
+            <li class="nav-item">
+                <a href="{% url 'user_create' %}" class="nav-link text-success text-uppercase font-weight-bold px-3">
+                    Sign Up</a><i class="material-icons">add</i></li>
+            <li class="nav-item">
+                <a href="{% url 'login' %}" class="nav-link text-success text-uppercase font-weight-bold px-3">
+                    Log In</a><i class="material-icons">login</i></li>
+            {% endif %}
             {% if item_count > 0 %}
             <li class="nav-item">
                 <a href="{% url 'cart_detail' %}" class="nav-link text-success text-uppercase font-weight-bold px-3">
-                     <i class="material-icons">add_shopping_cart</i>({{item_count}})
-                    </a></li>
+                    <i class="material-icons">add_shopping_cart</i>({{item_count}})
+                </a></li>
             {% endif %}
         </ul>
+                </div>
+            </div>
+        <div class="col-sm-3">
+            <div class="row">
         <form class="form-inline">
             <input type="text" placeholder="Search...">
             <div class="input-group px-2">
@@ -40,5 +61,7 @@
                 </button>
             </div>
         </form>
+                </div>
+            </div>
     </div>
 </nav>
